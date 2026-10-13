@@ -4,6 +4,13 @@ Converting a conventional half-bridge ATX power supply into a regulated 1–30 V
 This project documents my second, successful attempt at converting a standard ATX power supply into an adjustable power supply. The bench PS turned out to have a usable voltage range of 1.1-32V and current limiting range of 0.2-12A. ATX PSUs with a combined PWM controller+supervisor IC are generally easier to modify than those with separate controllers, although the latter can also be converted.
 For this build, I chose an old FSP Group ATX300F based on the FSP3528 PWM controller.
 
+# Instructions:
+1. Find the most powerfull PSU and look inside to see the amount of filtering components (inductors and caps on 230V input). Good ones have multiple inductors and film capacitors. Take a glance at the size of radiators, same here: the bigger the better.
+2. Search for ICs, the required TL494 may be there already. Sometimes you can find more than 1 IC, it can be PWM generator, supervisor or standby PWM. Search for the datasheets of those. Although that's not necessary, just for the general knowledge.
+3. Search for your PSU schematic, draw yours if there's no any. The easiest way to do that is to take a photo or a scan of the back of the PCB and then draw all the components in Paint.Net or something.
+4. Solder out all the components that are located near the PWM controler, we don't need them anymore. You can find one or two big inductors on the secondary part of the main transformer (marked as T2 on the board). If there is only 1 big, then that's the group stabilisation inductor. Trace the 5V and 3.3V inductor windings outputs and solder out everything that goes from the output of the PSU (usually red for 5V and orange for 3.3V wires) to the windings.
+5. Find the driver transformer and small transistors that are sitting on his windings. Search for the datasheet of them and find their base. That will be the points where C1 and C2 outputs of the TL494 will be connected. Find pull-up resistors that lead to these transistors so you don't solder out them accidentally.
+
 Power supply characteristics:
 
 <img width="654" height="377" alt="FSP Group ATX300F" src="https://github.com/user-attachments/assets/01ba46af-4872-4b03-a961-55c03488b5ec" />
